@@ -18,7 +18,7 @@ function draw() {
     s.angle += s.speed;
     s.radius += s.growth;
 
-    if (s.radius > 300) {
+    if (s.radius > s.deathLimit) {
       s.dead = true;
     }
   }
@@ -32,13 +32,14 @@ function mousePressed() {
     y: mouseY,
     angle: 0,
     radius: 0,
-    speed: random(2, 5),
-    growth: random(0.5, 1.5),
+    speed: random(8, 20),
+    growth: random(0.3, 1.2),
     color: {
       r: random(100, 255),
       g: random(100, 255),
       b: random(100, 255),
     },
+    deathLimit: random(100, 200),
     dead: false,
   });
 }

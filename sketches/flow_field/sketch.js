@@ -12,9 +12,9 @@ let num = 100;
 function setup() {
   createCanvas(windowWidth, windowHeight);
   angleMode(DEGREES);
-  // colorMode(HSB);
 
-  size = 50;
+  let baseSize = min(windowWidth, windowHeight);
+  size = baseSize * 0.05;
   radius = size / 2;
   row = ceil(height / size);
   col = ceil(width / size);
@@ -22,7 +22,7 @@ function setup() {
   for (let i = 0; i < num; i++) {
     particles[i] = new Particle(random(0, width), random(0, height));
   }
-  background(0, 220);
+  background(0, 240);
 }
 
 function draw() {
@@ -40,11 +40,6 @@ function draw() {
       let b = map(noise(x_off, y_off, z_off + 30), 0, 1, 0, 255);
       let c = color(r, g, b, 80);
       colors[i][j] = c;
-
-      print(c);
-      //fill(c);
-      //square(x, y, size);
-      //text(c.toString(), size / 2 + x, size / 2 + y);
 
       let angle = map(noise(x_off, y_off, z_off), 0, 1, 0, 360);
       arrows[i][j] = createVector(cos(angle), sin(angle));
@@ -72,8 +67,6 @@ function draw() {
 }
 
 function mouseClicked() {
-  z_off = 0;
-
   for (let i = 0; i < num; i++) {
     particles[i] = new Particle(random(0, width), random(0, height));
   }
